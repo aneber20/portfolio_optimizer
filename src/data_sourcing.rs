@@ -16,7 +16,7 @@ pub async fn pull_ticker_data_lt(tickers: &[String]) -> Result<Vec<(String, Vec<
 
     for ticker in tickers {
         match history::retrieve_interval(&ticker, Interval::_5y).await {
-            Ok(data) => match all_data.push((ticker.clone(), data.)),
+            Ok(data) => all_data.push((ticker.clone(), data)),
             Err(_) => print!("Failed to retreive ticker: {}", ticker)
         }
     }
@@ -49,27 +49,17 @@ pub fn unpack_bars_close(ticker: &str, data: Vec<Bar>) -> Result<Vec<f64>, Strin
             float_vec.push(bar.close);
         }
         Ok(float_vec)
-
     }
-    
 }
 
-fn main() -> () {
-    let aapl = String::from("AAPL");
-    let msft = String::from("MSFT");
-    let mut tickers: &[String] = &[aapl, msft];
-    let mut st_data = pull_ticker_data_lt(tickers);
-}
-
-/* 
-#[test]
-fn test() {
+#[actix_web::test]
+async fn test() {
 
     // Pull test data
     let aapl = stringify!("AAPL").to_string();
     let msft = stringify!("MSFT").to_string();
-    let mut tickers: &[String] = &[aapl, msft];
-    let mut st_data = pull_ticker_data_st(tickers).await;
+    let tickers: &[String] = &[aapl, msft];
+    let st_data = pull_ticker_data_st(tickers).await;
 
     // Make sure it works
     assert!(st_data.is_ok());
@@ -80,7 +70,4 @@ fn test() {
         };
         println!("{} - close was {} at {}", name, recent_day.close, recent_day.timestamp);
     }
-        
-
 }
-    */

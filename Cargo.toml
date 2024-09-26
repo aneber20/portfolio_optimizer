@@ -8,4 +8,6 @@ actix = "0.13.5"
 actix-web = "4.9.0"
 openssl = "0.10.66"
 openssl-sys = "0.9.103"
+serde = "1.0.210"
+tokio = {version = "1.40.0", features = ["macros", "rt-multi-thread"] }
 yahoo-finance = "0.3.0"
