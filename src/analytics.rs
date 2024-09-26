@@ -1,0 +1,3 @@
+/*
+Module for analyzing stock data
+*/

@@ -1,0 +1,11 @@
+[package]
+name = "portfolio_optimizer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix = "0.13.5"
+actix-web = "4.9.0"
+openssl = "0.10.66"
+openssl-sys = "0.9.103"
+yahoo-finance = "0.3.0"
